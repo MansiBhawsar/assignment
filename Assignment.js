@@ -6,10 +6,9 @@ import RadioGroup from 'react-native-radio-buttons-group';
 function Assignment() {
   const correctAnswers = {};
   JSON.parse(data).map((val, idx) => correctAnswers[idx] = val.correctIndex);
-
   const [userAnswers, setUserAnswers] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
+  
   let flatListRef;
 
   const _renderItem = ({ item }) => {
@@ -23,7 +22,7 @@ function Assignment() {
         <RadioGroup
             radioButtons={item.answers.map((ans, idx) => { return {value: idx.toString(), label: ans}})}
             onPress={(option) => { 
-              setUserAnswers({...userAnswers, [item.key]: +option.find(o=>o.selected.value)})
+              setUserAnswers({...userAnswers, [item.key]: +option.find(o=>o.selected).value})
             }}
         />
       </View>
